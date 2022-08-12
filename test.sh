@@ -2,8 +2,7 @@ set -xe
 
 sudo clickhouse start
 
-
-export PATH=$PATH:/home/runner/miniconda3
+eval "$(${HOME}/miniconda3/bin/conda shell.bash hook)"
 
 python --version
 which python
