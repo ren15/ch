@@ -1,0 +1,2 @@
+clickhouse-client --password --query="SELECT pickup_datetime,store_and_fwd_flag,rate_code_id,pickup_longitude,pickup_latitude,dropoff_longitude,dropoff_latitude FROM trips FORMAT Parquet" > trips.parquet
+ls -lah trips.parquet

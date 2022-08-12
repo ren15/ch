@@ -21,5 +21,9 @@ jobs:
 
       - name: Setup
         run: |
-          bash install_ch.sh
+          bash install_pkgs.sh
+
+      - name: test
+        run: |
+          bash test.sh
       
