@@ -23,7 +23,7 @@ jobs:
         run: |
           bash install_pkgs.sh
 
-      - name: test
+      - name: Test
         run: |
           bash test.sh
       
