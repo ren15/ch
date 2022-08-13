@@ -9,14 +9,15 @@ set -x
 python --version
 which python
 pip --version
+pip install pandas
 
-
+echo "import sql/insert_trips.sql"
 clickhouse-client < sql/trips_schema.sql
 clickhouse-client < sql/insert_trips.sql
 
 clickhouse-client --database=default --query='SHOW tables'
 
-clickhouse-client --database=default --query='SELECT * FROM trips LIMIT 10'
+clickhouse-client --database=default --query='SELECT * FROM trips LIMIT 3'
 
 mkdir data
 
