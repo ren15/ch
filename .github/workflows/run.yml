@@ -21,9 +21,9 @@ jobs:
 
       - name: Setup
         run: |
-          bash install_pkgs.sh
+          bash scripts/install_pkgs.sh
 
       - name: Test
         run: |
-          bash test.sh
+          bash scripts/test.sh
       

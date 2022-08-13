@@ -10,3 +10,5 @@ python --version
 which python
 pip --version
 
+./clickhouse-client --query='SHOW databases'
+
