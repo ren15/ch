@@ -28,10 +28,12 @@ FROM trips FORMAT Parquet
 clickhouse-client --query="${query}" > data/trips.parquet
 
 ls data/
+du -d1 -h data
 
 python src/read_dump.py
 
 ls data/
+du -d1 -h data
 
 
 
