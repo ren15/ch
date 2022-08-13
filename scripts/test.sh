@@ -9,7 +9,7 @@ set -x
 python --version
 which python
 pip --version
-pip install pandas
+pip install pandas pyarrow
 
 echo "import sql/insert_trips.sql"
 clickhouse-client < sql/trips_schema.sql
