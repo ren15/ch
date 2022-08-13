@@ -10,13 +10,27 @@ python --version
 which python
 pip --version
 
-clickhouse-client --query='SHOW databases'
 
 clickhouse-client < sql/trips_schema.sql
-
 clickhouse-client < sql/insert_trips.sql
 
 clickhouse-client --database=default --query='SHOW tables'
 
 clickhouse-client --database=default --query='SELECT * FROM trips LIMIT 10'
+
+mkdir data
+
+export query="
+SELECT pickup_datetime,store_and_fwd_flag,rate_code_id 
+FROM trips FORMAT Parquet
+"
+clickhouse-client --query="${query}" > data/trips.parquet
+
+ls data/
+
+python src/read_dump.py
+
+ls data/
+
+
 

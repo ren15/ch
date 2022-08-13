@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_parquet("trips.parquet")
+df = pd.read_parquet("data/trips.parquet")
 
 print(df.shape)
 
