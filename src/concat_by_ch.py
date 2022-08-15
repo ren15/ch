@@ -1,16 +1,25 @@
 import glob
 import os
+import time
 
 import pandas as pd
 from clickhouse_driver import Client
 
 
-def creat_table():
+def delete_table():
     client = Client('localhost', settings={'use_numpy': True})
     a = client.execute('SHOW TABLES')
     print(a)
 
     a = client.execute('DROP TABLE IF EXISTS trip_concat')
+    print(a)
+    a = client.execute('SHOW TABLES')
+    print(a)
+
+
+def create_table():
+    client = Client('localhost', settings={'use_numpy': True})
+    a = client.execute('SHOW TABLES')
     print(a)
 
     a = client.execute(
@@ -21,11 +30,11 @@ def creat_table():
         `store_and_fwd_flag` UInt8,
         `rate_code_id` UInt8
     )
-    ENGINE = MergeTree()
-    ORDER BY pickup_datetime
+    ENGINE = Log()
         """
     )
     print(a)
+    # ORDER BY pickup_datetime
 
 
 def insert_table(file_list):
@@ -44,11 +53,16 @@ def query_table():
     print("Before ch query")
     os.system("free -h")
 
+    start_t = time.time()
+
     df = client.query_dataframe(
         'SELECT pickup_datetime,store_and_fwd_flag,rate_code_id '
         'FROM trip_concat'
     )
+
+    end_t = time.time()
     print(df.shape)
+    print(f"Cost time {end_t - start_t}")
 
     print("After ch query")
     os.system("free -h")
@@ -59,6 +73,7 @@ if __name__ == '__main__':
     print("before reading")
     os.system("free -h")
 
-    creat_table()
+    delete_table()
+    create_table()
     insert_table(file_list)
     query_table()
