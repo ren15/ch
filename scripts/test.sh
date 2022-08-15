@@ -11,6 +11,8 @@ which python
 pip --version
 pip install pandas pyarrow
 
+# ----------------------------------------------------
+
 echo "import sql/insert_trips.sql"
 
 bash scripts/free_loop.sh > /tmp/free_output.txt & 
