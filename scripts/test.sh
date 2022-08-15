@@ -47,7 +47,5 @@ python src/concat_by_ch.py Log
 
 python src/concat_by_ch.py MergeTree
 
-python src/concat_by_ch.py Log
-
-python src/concat_by_ch.py MergeTree
+python src/concat_by_ch.py TinyLog
 
