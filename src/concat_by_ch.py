@@ -17,6 +17,11 @@ def delete_table():
 def create_table(engine):
     client = Client('localhost', settings={'use_numpy': True})
 
+    if engine == 'MergeTree':
+        order_by = "ORDER BY pickup_datetime"
+    else:
+        order_by = ""
+
     a = client.execute(
         f"""
     CREATE TABLE trip_concat
@@ -26,6 +31,7 @@ def create_table(engine):
         `rate_code_id` UInt8
     )
     ENGINE = {engine}()
+    {order_by}
         """
     )
     print(a)
