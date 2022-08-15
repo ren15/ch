@@ -9,7 +9,8 @@ set -x
 python --version
 which python
 pip --version
-pip install pandas pyarrow
+
+pip install pandas pyarrow clickhouse_driver[lz4,zstd,numpy]
 
 # ----------------------------------------------------
 

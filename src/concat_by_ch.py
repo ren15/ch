@@ -1,20 +1,64 @@
 import glob
-import pandas as pd
 import os
 
+import pandas as pd
+from clickhouse_driver import Client
 
-file_list = glob.glob("./data/*.parquet")
 
-cnt = 2
-print(cnt)
+def creat_table():
+    client = Client('localhost', settings={'use_numpy': True})
+    a = client.execute('SHOW TABLES')
+    print(a)
 
-print("before reading")
-os.system("free -h")
+    a = client.execute('DROP TABLE IF EXISTS trip_concat')
+    print(a)
 
-df_list = []
-for i in file_list[:1]:
-    df = pd.read_parquet(i)
-    df_list.append(df)
-    print(df)
+    a = client.execute(
+        """
+    CREATE TABLE trip_concat
+    (
+        `pickup_datetime` DateTime,
+        `store_and_fwd_flag` UInt8,
+        `rate_code_id` UInt8
+    )
+    ENGINE = MergeTree()
+    ORDER BY pickup_datetime
+        """
+    )
+    print(a)
+
+
+def insert_table(file_list):
+    client = Client('localhost', settings={'use_numpy': True})
+    print("Before ch insert")
+    os.system("free -h")
+
+    for i in file_list:
+        df = pd.read_parquet(i)
+        client.insert_dataframe('INSERT INTO trip_concat VALUES', df)
+        # print(a)
+
+
+def query_table():
+    client = Client('localhost', settings={'use_numpy': True})
+    print("Before ch query")
+    os.system("free -h")
+
+    df = client.query_dataframe(
+        'SELECT pickup_datetime,store_and_fwd_flag,rate_code_id '
+        'FROM trip_concat'
+    )
     print(df.shape)
-    print(df.dtypes)
+
+    print("After ch query")
+    os.system("free -h")
+
+
+if __name__ == '__main__':
+    file_list = glob.glob("./data/*.parquet")
+    print("before reading")
+    os.system("free -h")
+
+    creat_table()
+    insert_table(file_list)
+    query_table()
