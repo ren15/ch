@@ -15,7 +15,7 @@ pip install pandas pyarrow
 
 echo "import sql/insert_trips.sql"
 
-bash scripts/free_loop.sh > /tmp/free_output.txt & 
+# bash scripts/free_loop.sh > /tmp/free_output.txt & 
 
 clickhouse-client < sql/trips_schema.sql
 clickhouse-client < sql/insert_trips.sql
@@ -40,5 +40,7 @@ python src/read_dump.py
 ls data/
 du -d1 -h data
 
-python src/read_df.py
+python src/concat_by_pd.py
+
+python src/concat_by_ch.py
 

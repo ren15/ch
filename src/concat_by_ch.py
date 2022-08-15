@@ -1,5 +1,3 @@
-# read data in data
-
 import glob
 import pandas as pd
 import time
@@ -15,20 +13,9 @@ print("before reading")
 os.system("free -h")
 
 df_list = []
-for i in file_list[:cnt]:
+for i in file_list[:1]:
     df = pd.read_parquet(i)
     df_list.append(df)
+    print(df)
     print(df.shape)
-
-print("After reading")
-
-os.system("free -h")
-
-time.sleep(5)
-
-df = pd.concat(df_list)
-
-print("After concat")
-os.system("free -h")
-
-print(df.shape)
+    print(df.dtypes)
