@@ -14,7 +14,7 @@ os.system("free -h")
 start_t = time.time()
 
 df_list = []
-for i in file_list
+for i in file_list:
     df = pd.read_parquet(i)
     df_list.append(df)
 
