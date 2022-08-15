@@ -43,5 +43,11 @@ du -d1 -h data
 
 python src/concat_by_pd.py
 
-python src/concat_by_ch.py
+python src/concat_by_ch.py Log
+
+python src/concat_by_ch.py MergeTree
+
+python src/concat_by_ch.py Log
+
+python src/concat_by_ch.py MergeTree
 

@@ -1,6 +1,8 @@
 import glob
 import os
 import time
+import sys
+
 
 import pandas as pd
 from clickhouse_driver import Client
@@ -8,29 +10,22 @@ from clickhouse_driver import Client
 
 def delete_table():
     client = Client('localhost', settings={'use_numpy': True})
-    a = client.execute('SHOW TABLES')
-    print(a)
 
-    a = client.execute('DROP TABLE IF EXISTS trip_concat')
-    print(a)
-    a = client.execute('SHOW TABLES')
-    print(a)
+    client.execute('DROP TABLE IF EXISTS trip_concat')
 
 
-def create_table():
+def create_table(engine):
     client = Client('localhost', settings={'use_numpy': True})
-    a = client.execute('SHOW TABLES')
-    print(a)
 
     a = client.execute(
-        """
+        f"""
     CREATE TABLE trip_concat
     (
         `pickup_datetime` DateTime,
         `store_and_fwd_flag` UInt8,
         `rate_code_id` UInt8
     )
-    ENGINE = Log()
+    ENGINE = {engine}()
         """
     )
     print(a)
@@ -73,7 +68,11 @@ if __name__ == '__main__':
     print("before reading")
     os.system("free -h")
 
+    engine: str = sys.argv[1]
+
+    print(f"Read ClickHouse Eninge: {engine}")
+
     delete_table()
-    create_table()
+    create_table(engine)
     insert_table(file_list)
     query_table()
