@@ -40,5 +40,5 @@ python src/read_dump.py
 ls data/
 du -d1 -h data
 
+python src/read_df.py
 
-cat /tmp/free_output.txt
