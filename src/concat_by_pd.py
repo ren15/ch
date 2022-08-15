@@ -11,13 +11,11 @@ file_list = glob.glob("./data/*.parquet")
 print("before reading")
 os.system("free -h")
 
-cnt = 70
-
 start_t = time.time()
 
 df_list = []
-for i in range(cnt):
-    df = pd.read_parquet(file_list[0])
+for i in file_list
+    df = pd.read_parquet(i)
     df_list.append(df)
 
 print("After reading")
