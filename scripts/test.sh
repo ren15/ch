@@ -41,7 +41,7 @@ clickhouse-client --query="${query}" > data/trips.parquet
 ls data/
 du -d1 -h data
 
-python src/create_dump.py 10
+python src/create_dump.py 20
 
 ls data/
 du -d1 -h data
@@ -51,3 +51,4 @@ python src/concat_by_pd.py
 python src/concat_by_ch.py MergeTree
 
 
+kill $(ps -elf | grep 'python src/monitor.py' | head -1 | cut -d' ' -f7)
