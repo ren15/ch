@@ -34,3 +34,4 @@ jobs:
         run: |
           cat /tmp/free_output.txt >> report.md
           cml send-comment report.md
+          
