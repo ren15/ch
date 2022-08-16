@@ -20,7 +20,8 @@ pip install \
 
 echo "import sql/insert_trips.sql"
 
-bash scripts/free_loop.sh > /tmp/free_output.txt & 
+# bash scripts/free_loop.sh > /tmp/free_output.txt & 
+python src/monitor.py &
 
 clickhouse-client < sql/trips_schema.sql
 clickhouse-client < sql/insert_trips.sql
