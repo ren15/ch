@@ -30,6 +30,7 @@ def plot():
 
     plt.plot(df)
     plt.legend(['total', 'used', 'swap'])
+    plt.grid()
     plt.savefig('mem_info.png')
 
 
