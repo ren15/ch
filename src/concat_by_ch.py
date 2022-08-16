@@ -14,13 +14,8 @@ def delete_table():
     client.execute('DROP TABLE IF EXISTS trip_concat')
 
 
-def create_table(engine):
+def create_table():
     client = Client('localhost', settings={'use_numpy': True})
-
-    if engine == 'MergeTree':
-        order_by = "ORDER BY pickup_datetime"
-    else:
-        order_by = ""
 
     a = client.execute(
         f"""
@@ -30,12 +25,11 @@ def create_table(engine):
         `store_and_fwd_flag` UInt8,
         `rate_code_id` UInt8
     )
-    ENGINE = {engine}()
-    {order_by}
+    ENGINE = MergeTree()
+    ORDER BY pickup_datetime
         """
     )
     print(a)
-    # ORDER BY pickup_datetime
 
 
 def insert_table(file_list):
@@ -74,11 +68,8 @@ if __name__ == '__main__':
     print("before reading")
     os.system("free -h")
 
-    engine: str = sys.argv[1]
-
-    print(f"Read ClickHouse Eninge: {engine}")
 
     delete_table()
-    create_table(engine)
+    create_table()
     insert_table(file_list)
     query_table()

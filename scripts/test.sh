@@ -36,16 +36,13 @@ clickhouse-client --query="${query}" > data/trips.parquet
 ls data/
 du -d1 -h data
 
-python src/create_dump.py
+python src/create_dump.py 70
 
 ls data/
 du -d1 -h data
 
 python src/concat_by_pd.py
 
-python src/concat_by_ch.py Log
-
 python src/concat_by_ch.py MergeTree
 
-python src/concat_by_ch.py TinyLog
 
