@@ -29,6 +29,6 @@ print("After concat")
 os.system("free -h")
 
 
-print(f"concat {cnt} parquet files")
+print(f"concat {len(file_list)} parquet files")
 print(df.shape)
 print(f"Cost time: {end_t - start_t}")
