@@ -21,7 +21,7 @@ pip install \
 echo "import sql/insert_trips.sql"
 
 # bash scripts/free_loop.sh > /tmp/free_output.txt & 
-python src/monitor.py &
+python src/monitor.py monitor &
 PY_MONITOR_PID=$!
 
 clickhouse-client < sql/trips_schema.sql

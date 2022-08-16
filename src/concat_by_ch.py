@@ -1,7 +1,6 @@
 import glob
 import os
 import time
-import sys
 
 
 import pandas as pd
@@ -18,7 +17,7 @@ def create_table():
     client = Client('localhost', settings={'use_numpy': True})
 
     a = client.execute(
-        f"""
+        """
     CREATE TABLE trip_concat
     (
         `pickup_datetime` DateTime,
@@ -67,7 +66,6 @@ if __name__ == '__main__':
     file_list = glob.glob("./data/*.parquet")
     print("before reading")
     os.system("free -h")
-
 
     delete_table()
     create_table()
