@@ -36,7 +36,7 @@ clickhouse-client --query="${query}" > data/trips.parquet
 ls data/
 du -d1 -h data
 
-python src/create_dump.py 75
+python src/create_dump.py 90
 
 ls data/
 du -d1 -h data
