@@ -26,3 +26,7 @@ jobs:
       - name: Test
         run: |
           bash scripts/test.sh
+
+      - name: Show metrics
+        run: |
+          cat /tmp/free_output.txt 

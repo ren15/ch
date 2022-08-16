@@ -16,7 +16,7 @@ pip install pandas pyarrow clickhouse_driver[lz4,zstd,numpy]
 
 echo "import sql/insert_trips.sql"
 
-# bash scripts/free_loop.sh > /tmp/free_output.txt & 
+bash scripts/free_loop.sh > /tmp/free_output.txt & 
 
 clickhouse-client < sql/trips_schema.sql
 clickhouse-client < sql/insert_trips.sql
