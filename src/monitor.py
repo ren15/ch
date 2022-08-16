@@ -16,11 +16,9 @@ def monitor():
         with open(CSV_NAME, 'a+') as f:
             spamwriter = csv.writer(
                 f, delimiter=',', quotechar='\'', quoting=csv.QUOTE_MINIMAL)
-            spamwriter.writerow(
-                [mem.total,
-                 mem.used,
-                 psutil.swap_memory().used
-                 ])
+
+            output = [mem.total, mem.used, psutil.swap_memory().used]
+            spamwriter.writerow([float(i) / 1024 / 1024 for i in output])
 
         time.sleep(0.1)
 
