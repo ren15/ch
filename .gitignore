@@ -1,3 +1,6 @@
 clickhouse
 data
 Miniconda3*
+*.csv
+*.png
+

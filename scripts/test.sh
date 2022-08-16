@@ -10,13 +10,19 @@ python --version
 which python
 pip --version
 
-pip install pandas pyarrow clickhouse_driver[lz4,zstd,numpy]
+pip install \
+    pandas pyarrow \
+    clickhouse_driver[lz4,zstd,numpy] \
+    matplotlib \
+    psutil
 
 # ----------------------------------------------------
 
 echo "import sql/insert_trips.sql"
 
-bash scripts/free_loop.sh > /tmp/free_output.txt & 
+# bash scripts/free_loop.sh > /tmp/free_output.txt & 
+python src/monitor.py monitor &
+PY_MONITOR_PID=$!
 
 clickhouse-client < sql/trips_schema.sql
 clickhouse-client < sql/insert_trips.sql
@@ -36,7 +42,7 @@ clickhouse-client --query="${query}" > data/trips.parquet
 ls data/
 du -d1 -h data
 
-python src/create_dump.py 80
+python src/create_dump.py 90
 
 ls data/
 du -d1 -h data
@@ -46,3 +52,4 @@ python src/concat_by_pd.py
 python src/concat_by_ch.py MergeTree
 
 
+kill $PY_MONITOR_PID
