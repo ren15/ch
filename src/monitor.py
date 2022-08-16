@@ -18,9 +18,7 @@ def monitor():
                 f, delimiter=',', quotechar='\'', quoting=csv.QUOTE_MINIMAL)
             spamwriter.writerow(
                 [mem.total,
-                 mem.available,
                  mem.used,
-                 mem.free,
                  psutil.swap_memory().used
                  ])
 
@@ -31,7 +29,7 @@ def plot():
     df = pd.read_csv(CSV_NAME)
 
     plt.plot(df)
-    plt.legend(['total', 'avail', 'used', 'free', 'swap'])
+    plt.legend(['total', 'used', 'swap'])
     plt.savefig('mem_info.png')
 
 
