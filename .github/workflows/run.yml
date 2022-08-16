@@ -35,5 +35,5 @@ jobs:
           # cat /tmp/free_output.txt >> report.md
           bash scripts/plot.sh
 
-          cml publish mem_info.png >> report.md
+          cml publish mem_info.png --md >> report.md
           cml send-comment report.md
