@@ -32,6 +32,8 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cat /tmp/free_output.txt >> report.md
+          # cat /tmp/free_output.txt >> report.md
+          bash scripts/plot.sh
+
+          cml publish mem_info.png >> report.md
           cml send-comment report.md
-          
