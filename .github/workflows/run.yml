@@ -28,11 +28,10 @@ jobs:
           bash scripts/test.sh
 
       - uses: iterative/setup-cml@v1
-      - name: Train model
+      - name: Plot memory usage
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # cat /tmp/free_output.txt >> report.md
           bash scripts/plot.sh
 
           cml publish mem_info.png --md >> report.md
