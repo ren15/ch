@@ -2,10 +2,10 @@ import psutil
 import time
 import csv
 
-mem = psutil.virtual_memory()
 
 while True:
 
+    mem = psutil.virtual_memory()
     with open("mem_info.csv", 'a+') as f:
         spamwriter = csv.writer(
             f, delimiter=',', quotechar='\'', quoting=csv.QUOTE_MINIMAL)
