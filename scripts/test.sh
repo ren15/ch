@@ -13,6 +13,7 @@ pip --version
 pip install \
     pandas pyarrow \
     clickhouse_driver[lz4,zstd,numpy] \
+    matplotlib \
     psutil
 
 # ----------------------------------------------------
