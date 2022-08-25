@@ -29,7 +29,7 @@ def plot():
     plt.plot(df)
     plt.legend(['total', 'used', 'swap'])
     plt.grid()
-    plt.set_title('Memory Usage')
+    plt.title('Memory Usage')
     plt.savefig('mem_info.png')
 
 
