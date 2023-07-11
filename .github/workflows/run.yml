@@ -35,5 +35,5 @@ jobs:
           bash scripts/plot.sh
 
           echo "![](./mem_info.png)" >> report.md
-          cml comment create report.md
+          #cml comment create report.md
 

@@ -15,7 +15,7 @@ def delete_table():
 
 def create_table():
     client = Client('localhost', settings={
-                    'use_numpy': True}, compression='zstd')
+                    'use_numpy': True})
 
     a = client.execute(
         """
@@ -34,7 +34,7 @@ def create_table():
 
 def insert_table(file_list):
     client = Client('localhost', settings={
-                    'use_numpy': True}, compression='zstd')
+                    'use_numpy': True})
     print("Before ch insert")
     os.system("free -h")
 
@@ -46,7 +46,7 @@ def insert_table(file_list):
 
 def query_table():
     client = Client('localhost', settings={
-                    'use_numpy': True}, compression='zstd')
+                    'use_numpy': True})
     print("Before ch query")
     os.system("free -h")
 
