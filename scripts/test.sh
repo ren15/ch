@@ -14,7 +14,8 @@ pip install \
     pandas pyarrow \
     clickhouse_driver[lz4,zstd,numpy] \
     matplotlib \
-    psutil
+    psutil \
+    arcticdb
 
 # ----------------------------------------------------
 
@@ -47,9 +48,12 @@ python src/create_dump.py 90
 ls data/
 du -d1 -h data
 
+python src/concat_by_arctic.py
+
 python src/concat_by_pd.py
 
 python src/concat_by_ch.py MergeTree
+
 
 
 kill $PY_MONITOR_PID
