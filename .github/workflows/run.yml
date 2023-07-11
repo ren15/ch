@@ -34,5 +34,6 @@ jobs:
         run: |
           bash scripts/plot.sh
 
-          cml publish mem_info.png --md >> report.md
-          cml send-comment report.md
+          echo "![](./mem_info.png)" >> report.md
+          cml comment create report.md
+
